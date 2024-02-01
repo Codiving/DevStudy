@@ -1,10 +1,11 @@
 import { Header } from "@/components";
-import React from "react";
+import Floating from "@/components/Floating";
 
 export default function Home() {
   return (
     <>
       <Header />
+      <Floating />
     </>
   );
 }
