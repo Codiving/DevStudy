@@ -1,0 +1,41 @@
+.container {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header {
+  max-width: var(--max-width);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  height: 64px;
+  gap: 48px;
+  padding: 0 24px;
+}
+
+.logoText1 {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.logoText2 {
+  font-style: italic;
+}
+
+.navContainer {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav {
+  margin-right: auto;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}

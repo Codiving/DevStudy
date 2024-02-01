@@ -1,3 +1,10 @@
+import { Header } from "@/components";
+import React from "react";
+
 export default function Home() {
-  return <main></main>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
