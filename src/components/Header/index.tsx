@@ -1,5 +1,4 @@
-import { IoMdSearch } from "react-icons/io";
-import { IoBagSharp, IoPerson } from "react-icons/io5";
+import { IoBagOutline, IoLogInOutline, IoPersonOutline } from "react-icons/io5";
 import styles from "./Header.module.css";
 
 const Header = () => {
@@ -20,9 +19,18 @@ const Header = () => {
               <li>5번 브랜드</li>
             </ul>
           </nav>
-          <IoPerson size={22} />
-          <IoMdSearch size={22} />
-          <IoBagSharp size={22} />
+          <div className={styles.iconContainer}>
+            <IoLogInOutline size={20} />
+            <span className={styles.iconText}>로그인</span>
+          </div>
+          <div className={styles.iconContainer}>
+            <IoPersonOutline size={20} />
+            <span className={styles.iconText}>마이페이지</span>
+          </div>
+          <div className={styles.iconContainer}>
+            <IoBagOutline size={20} />
+            <span className={styles.iconText}>장바구니</span>
+          </div>
         </div>
       </header>
     </div>
