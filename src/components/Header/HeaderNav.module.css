@@ -1,7 +1,7 @@
 .navContainer {
   display: flex;
   flex: 1;
-  align-items: center;
+  align-items: stretch;
   gap: 24px;
 }
 

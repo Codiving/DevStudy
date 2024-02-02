@@ -1,18 +1,11 @@
 import { IoBagOutline, IoLogInOutline, IoPersonOutline } from "react-icons/io5";
 import styles from "./HeaderNav.module.css";
+import HeaderNavDropdown from "./HeaderNavDropdown";
 
 const HeaderNav = () => {
   return (
     <div className={styles.navContainer}>
-      <nav className={styles.nav}>
-        <ul className={styles.menu}>
-          <li>1번 브랜드</li>
-          <li>2번 브랜드</li>
-          <li>3번 브랜드</li>
-          <li>4번 브랜드</li>
-          <li>5번 브랜드</li>
-        </ul>
-      </nav>
+      <HeaderNavDropdown />
       <div className={styles.iconContainer}>
         <IoLogInOutline size={20} />
         <span className={styles.iconText}>로그인</span>

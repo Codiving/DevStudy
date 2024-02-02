@@ -1,0 +1,44 @@
+.container {
+  margin-right: auto;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+}
+
+.menuItem {
+  position: relative;
+  display: inline-block;
+  height: inherit;
+}
+
+.menuItemText {
+  display: flex;
+  align-items: center;
+  height: inherit;
+}
+
+.submenu {
+  position: absolute;
+  display: none;
+  border: 1px solid #ece9e9;
+  background-color: #fff;
+}
+
+.menuItem:hover .submenu {
+  display: block;
+}
+
+.submenuLink {
+  display: block;
+  padding: 8px 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+.submenuLink:hover {
+  background-color: #f4f4f4;
+}
