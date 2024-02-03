@@ -1,0 +1,19 @@
+.vibrator {
+  position: fixed;
+  transform-origin: bottom center;
+  animation: shake 0.5s linear infinite alternate;
+}
+
+@keyframes shake {
+  0%,
+  7% {
+    transform: rotateZ(0);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  40%,
+  100% {
+    transform: rotateZ(0);
+  }
+}
