@@ -8,15 +8,11 @@ const HeaderNav = () => {
       <HeaderNavDropdown />
       <div className={styles.iconContainer}>
         <IoLogInOutline size={20} />
-        <span className={styles.iconText}>로그인</span>
+        <span className={styles.iconText}>Login</span>
       </div>
       <div className={styles.iconContainer}>
         <IoPersonOutline size={20} />
-        <span className={styles.iconText}>마이페이지</span>
-      </div>
-      <div className={styles.iconContainer}>
-        <IoBagOutline size={20} />
-        <span className={styles.iconText}>장바구니</span>
+        <span className={styles.iconText}>My Page</span>
       </div>
     </div>
   );
