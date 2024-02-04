@@ -13,6 +13,7 @@
   position: relative;
   display: inline-block;
   height: inherit;
+  z-index: 9;
 }
 
 .menuItemText {
