@@ -6,13 +6,21 @@ import { FaHotel } from "react-icons/fa6";
 import { IoAirplane, IoSearch } from "react-icons/io5";
 import { MdOutlineFlightLand, MdOutlineFlightTakeoff } from "react-icons/md";
 import { usePopper } from "react-popper";
+import Calendar, { getDateFormatYYYYMMDD, isBeforeDate } from "../Calendar";
 import styles from "./AirlineSearch.module.css";
 
 type Ticket = "flight" | "flightHotel";
 type FlightOption = "roundTrip" | "oneWay" | "multiCity";
 
+type PopperType = null | "begin" | "end";
+
 export default function AirlineSearch() {
-  const [showPopper, setShowPopper] = useState(false);
+  const [ticket, setTicket] = useState<Ticket>("flight");
+  const [flightOption, setFlightOption] = useState<FlightOption>("roundTrip");
+
+  const [begin, setBegin] = useState(new Date());
+  const [end, setEnd] = useState(new Date());
+  const [popperType, setPopperType] = useState<PopperType>(null);
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
     null
   );
@@ -32,9 +40,6 @@ export default function AirlineSearch() {
       ]
     }
   );
-
-  const [ticket, setTicket] = useState<Ticket>("flight");
-  const [flightOption, setFlightOption] = useState<FlightOption>("roundTrip");
 
   return (
     <section className={styles.container}>
@@ -122,26 +127,53 @@ export default function AirlineSearch() {
               </div>
             </div>
             <div className={styles.dateSearchContainer}>
-              <div
-                className={styles.dateSearchWrap}
-                ref={setReferenceElement}
-                onClick={() => {
-                  setShowPopper(prev => !prev);
-                }}
-              >
+              <div className={styles.dateSearchWrap} ref={setReferenceElement}>
                 <span className={styles.departureDestinationText}>날짜</span>
-                <span className={styles.departureDestinationResultText}>
-                  2024.12.11 ~ 2024.12.22
-                </span>
-
-                {showPopper && (
+                <div style={{ display: "flex", gap: 8 }}>
+                  <span
+                    className={styles.departureDestinationResultText}
+                    onClick={() => {
+                      setPopperType("begin");
+                    }}
+                  >
+                    {getDateFormatYYYYMMDD(begin)}
+                  </span>
+                  <span className={styles.departureDestinationResultText}>
+                    ~
+                  </span>
+                  <span
+                    className={styles.departureDestinationResultText}
+                    onClick={() => {
+                      setPopperType("end");
+                    }}
+                  >
+                    {getDateFormatYYYYMMDD(end)}
+                  </span>
+                </div>
+                {!!popperType && (
                   <div
                     ref={setPopperElement}
                     {...attributes.popper}
                     style={popperStyles.popper}
                     className={styles.popperCSS}
                   >
-                    캘린더
+                    <Calendar
+                      date={popperType === "begin" ? begin : end}
+                      onChangeDate={date => {
+                        if (popperType === "begin") {
+                          setBegin(date);
+
+                          if (isBeforeDate(end, date)) {
+                            console.log(123123123);
+                            setEnd(date);
+                          }
+                        } else {
+                          setEnd(date);
+                        }
+                        setPopperType(null);
+                      }}
+                      startDate={popperType === "begin" ? new Date() : begin}
+                    />
                   </div>
                 )}
               </div>
