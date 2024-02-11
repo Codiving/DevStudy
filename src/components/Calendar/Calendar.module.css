@@ -10,13 +10,20 @@
   padding: 8px;
 }
 
+.disabledLeftButton {
+  cursor: not-allowed;
+  color: #b4b4b4;
+}
+
 .calendarDate {
   font-weight: bold;
 }
 
 .calendarGrid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 45px);
+  grid-template-rows: auto;
+  grid-auto-rows: 45px;
   gap: 2px;
 }
 
@@ -27,9 +34,17 @@
   padding: 10px;
 }
 
+.disabledDayText {
+  background-color: #ccc;
+  color: #fff;
+  cursor: not-allowed;
+}
+
 .calendarCell {
   padding: 10px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .selected {
@@ -42,21 +57,7 @@
   color: #fff;
 }
 
-.action {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.action button {
-  padding: 5px 10px;
-  font-size: 1rem;
-  background-color: #007bff;
+.abledHover:hover {
+  background-color: #398be3;
   color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.action button:hover {
-  background-color: #0056b3;
 }
