@@ -60,3 +60,73 @@
   background-color: black;
   color: #fff;
 }
+
+.searchResultWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  gap: 32px;
+}
+
+.departureDestinationContainer {
+  display: flex;
+  gap: 8px;
+  width: 50%;
+  justify-content: space-between;
+}
+
+.departureDestinationWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 0%;
+  cursor: pointer;
+}
+
+.departureDestinationText {
+  font-size: 14px;
+}
+
+.departureDestinationResultWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.departureDestinationResultText {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.dateSearchContainer {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dateSearchWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.popperCSS {
+  background-color: #fff;
+  z-index: 999;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.searchButtonWrap {
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: rgb(66, 133, 244);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}

@@ -5,12 +5,34 @@ import { useState } from "react";
 import { FaHotel } from "react-icons/fa6";
 import { IoAirplane, IoSearch } from "react-icons/io5";
 import { MdOutlineFlightLand, MdOutlineFlightTakeoff } from "react-icons/md";
+import { usePopper } from "react-popper";
 import styles from "./AirlineSearch.module.css";
 
 type Ticket = "flight" | "flightHotel";
 type FlightOption = "roundTrip" | "oneWay" | "multiCity";
 
 export default function AirlineSearch() {
+  const [showPopper, setShowPopper] = useState(false);
+  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
+    null
+  );
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const { styles: popperStyles, attributes } = usePopper(
+    referenceElement,
+    popperElement,
+    {
+      placement: "bottom-start",
+      modifiers: [
+        {
+          name: "offset",
+          options: {
+            offset: [0, 15]
+          }
+        }
+      ]
+    }
+  );
+
   const [ticket, setTicket] = useState<Ticket>("flight");
   const [flightOption, setFlightOption] = useState<FlightOption>("roundTrip");
 
@@ -78,100 +100,52 @@ export default function AirlineSearch() {
               </button>
             </div>
           </div>
-          <div
-            style={{
-              flex: 1,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "0 18px",
-              gap: 32
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                gap: 8,
-                width: "50%",
-                justifyContent: "space-between"
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 8,
-                  flex: 1,
-                  cursor: "pointer"
-                }}
-              >
-                <span style={{ fontSize: 14 }}>출발지</span>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8
-                  }}
-                >
+          <div className={styles.searchResultWrap}>
+            <div className={styles.departureDestinationContainer}>
+              <div className={styles.departureDestinationWrap}>
+                <span className={styles.departureDestinationText}>출발지</span>
+                <div className={styles.departureDestinationResultWrap}>
                   <MdOutlineFlightTakeoff size={20} />
-                  <span style={{ fontSize: 20, fontWeight: "bold" }}>인천</span>
+                  <span className={styles.departureDestinationResultText}>
+                    인천
+                  </span>
                 </div>
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 8,
-                  flex: 1,
-                  cursor: "pointer"
-                }}
-              >
-                <span style={{ fontSize: 14 }}>도착지</span>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8
-                  }}
-                >
+              <div className={styles.departureDestinationWrap}>
+                <span className={styles.departureDestinationText}>도착지</span>
+                <div className={styles.departureDestinationResultWrap}>
                   <MdOutlineFlightLand size={20} />
-                  <span style={{ fontSize: 20, fontWeight: "bold" }}>유럽</span>
+                  <span className={styles.departureDestinationResultText}>
+                    유럽
+                  </span>
                 </div>
               </div>
             </div>
-            <div
-              style={{
-                width: "50%",
-                display: "flex",
-                justifyContent: "space-between",
-                cursor: "pointer"
-              }}
-            >
+            <div className={styles.dateSearchContainer}>
               <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 8,
-                  flex: 1
+                className={styles.dateSearchWrap}
+                ref={setReferenceElement}
+                onClick={() => {
+                  setShowPopper(prev => !prev);
                 }}
               >
-                <span style={{ fontSize: 14 }}>날짜</span>
-                <span style={{ fontSize: 20, fontWeight: "bold" }}>
+                <span className={styles.departureDestinationText}>날짜</span>
+                <span className={styles.departureDestinationResultText}>
                   2024.12.11 ~ 2024.12.22
                 </span>
+
+                {showPopper && (
+                  <div
+                    ref={setPopperElement}
+                    {...attributes.popper}
+                    style={popperStyles.popper}
+                    className={styles.popperCSS}
+                  >
+                    캘린더
+                  </div>
+                )}
               </div>
-              <div
-                style={{
-                  borderRadius: 12,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: 12,
-                  background: "#4285F4",
-                  color: "#fff",
-                  cursor: "pointer"
-                }}
-              >
+              <div className={styles.searchButtonWrap}>
                 <IoSearch />
                 <button>검색</button>
               </div>
