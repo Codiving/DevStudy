@@ -1,7 +1,8 @@
 "use client";
 
+import { Instance, createPopper } from "@popperjs/core";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaHotel } from "react-icons/fa6";
 import { IoAirplane, IoSearch } from "react-icons/io5";
 import { MdOutlineFlightLand, MdOutlineFlightTakeoff } from "react-icons/md";
@@ -21,10 +22,12 @@ export default function AirlineSearch() {
   const [begin, setBegin] = useState(new Date());
   const [end, setEnd] = useState(new Date());
   const [popperType, setPopperType] = useState<PopperType>(null);
-  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
+  const [referenceElement, setReferenceElement] =
+    useState<HTMLDivElement | null>(null);
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
     null
   );
-  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const popperInstanceRef = useRef<Instance | null>(null);
   const { styles: popperStyles, attributes } = usePopper(
     referenceElement,
     popperElement,
@@ -40,6 +43,35 @@ export default function AirlineSearch() {
       ]
     }
   );
+
+  useEffect(() => {
+    if (popperType) {
+      if (referenceElement && popperElement) {
+        popperInstanceRef.current = createPopper(
+          referenceElement,
+          popperElement
+        );
+        const handleClickOutside = (event: MouseEvent) => {
+          if (popperElement && !popperElement.contains(event.target as Node)) {
+            setPopperType(null);
+          }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          if (popperInstanceRef.current) {
+            popperInstanceRef.current.destroy();
+          }
+          document.removeEventListener("mousedown", handleClickOutside);
+        };
+      }
+
+      document.body.style.overflow = "hidden";
+
+      return () => {};
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [popperElement, popperType, referenceElement]);
 
   return (
     <section className={styles.container}>
@@ -151,29 +183,30 @@ export default function AirlineSearch() {
                   </span>
                 </div>
                 {!!popperType && (
-                  <div
-                    ref={setPopperElement}
-                    {...attributes.popper}
-                    style={popperStyles.popper}
-                    className={styles.popperCSS}
-                  >
-                    <Calendar
-                      date={popperType === "begin" ? begin : end}
-                      onChangeDate={date => {
-                        if (popperType === "begin") {
-                          setBegin(date);
+                  <div className={styles.popperCSSContainer}>
+                    <div
+                      ref={setPopperElement}
+                      {...attributes.popper}
+                      style={popperStyles.popper}
+                      className={styles.popperCSS}
+                    >
+                      <Calendar
+                        date={popperType === "begin" ? begin : end}
+                        onChangeDate={date => {
+                          if (popperType === "begin") {
+                            setBegin(date);
 
-                          if (isBeforeDate(end, date)) {
-                            console.log(123123123);
+                            if (isBeforeDate(end, date)) {
+                              setEnd(date);
+                            }
+                          } else {
                             setEnd(date);
                           }
-                        } else {
-                          setEnd(date);
-                        }
-                        setPopperType(null);
-                      }}
-                      startDate={popperType === "begin" ? new Date() : begin}
-                    />
+                          setPopperType(null);
+                        }}
+                        startDate={popperType === "begin" ? new Date() : begin}
+                      />
+                    </div>
                   </div>
                 )}
               </div>
