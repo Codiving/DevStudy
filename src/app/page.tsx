@@ -3,6 +3,7 @@ import AirlineSearch from "@/components/AirlineSearch";
 import BestTrip from "@/components/BestTrip";
 import BestTripCountry from "@/components/BestTripCountry";
 import Floating from "@/components/Floating";
+import MilkyWay from "@/components/MilkyWay";
 import QuizNav from "@/components/QuizNav";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <AirlineSearch />
       <BestTripCountry />
       <BestTrip />
+      <MilkyWay />
     </>
   );
 }
