@@ -1,0 +1,14 @@
+.title {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.phoneWrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.phoneText {
+  font-weight: bold;
+}

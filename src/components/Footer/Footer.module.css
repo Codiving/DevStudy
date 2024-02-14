@@ -1,5 +1,5 @@
 .container {
-  margin-top: 70px;
+  margin-top: 100px;
   padding: 32px 24px;
   background-color: #f8f9fa;
 }
@@ -9,5 +9,39 @@
   width: 100%;
   margin: 0 auto;
   display: flex;
+  gap: 36px;
+}
+
+.csContainer {
+  display: flex;
+  font-weight: bold;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1;
+}
+
+.csContainerTitleWrap {
+  display: flex;
+  gap: 4px;
+}
+
+.csContainerTitle {
+  margin-bottom: 8px;
+}
+
+.csContainerDescription {
+  font-size: 14px;
+}
+
+.ccPhoneNumberList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 24px;
+}
+
+.descriptionContainer {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
 }
