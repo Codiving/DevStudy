@@ -9,6 +9,7 @@ import {
   useTripCSSDispatchContext,
   useTripCSSStateContext
 } from "@/context/TripCSSContext";
+import { onMoveToId } from "@/lib/utils";
 
 export default function QuizNav() {
   const { quiz } = useTripCSSStateContext();
@@ -37,6 +38,10 @@ export default function QuizNav() {
                   type: "SET_QUIZ",
                   value: newQuizId
                 });
+
+                if (newQuizId) {
+                  onMoveToId(newQuizId);
+                }
               }}
             >
               {index}
