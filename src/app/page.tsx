@@ -6,11 +6,13 @@ import Floating from "@/components/Floating";
 import Footer from "@/components/Footer";
 import MilkyWay from "@/components/MilkyWay";
 import QuizNav from "@/components/QuizNav";
+import TripCSSProvider from "@/context/TripCSSContext";
 
 export default function Home() {
   return (
-    <>
+    <TripCSSProvider>
       <QuizNav />
+
       <Header />
       <Floating />
       <AirlineSearch />
@@ -18,6 +20,6 @@ export default function Home() {
       <BestTrip />
       <MilkyWay />
       <Footer />
-    </>
+    </TripCSSProvider>
   );
 }
