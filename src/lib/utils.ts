@@ -1,9 +1,11 @@
-const onMoveToQuiz = (id: string) => {
+const onMoveToId = (id: string) => {
   const quizDom = document.getElementById(id);
 
   if (!quizDom) return;
 
-  quizDom.scrollIntoView({ behavior: "smooth" });
+  quizDom.scrollIntoView({
+    behavior: "smooth"
+  });
 };
 
-export { onMoveToQuiz };
+export { onMoveToId };
