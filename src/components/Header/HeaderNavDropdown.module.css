@@ -29,6 +29,10 @@
   background-color: #fff;
 }
 
+.submenuQuiz {
+  display: block !important;
+}
+
 .menuItem:hover .submenu {
   display: block;
 }
